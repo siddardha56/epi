@@ -22,7 +22,7 @@ import createHistory from 'history/lib/createHashHistory';
 import {rootReducer} from './reducers/rootReducer';
 
 import App from './containers/App';
-import Home from './containers/Home';
+import Movies from './containers/Movies';
 
 const history = createHistory();
 const middleware = syncHistory(history);
@@ -56,7 +56,7 @@ render(
             <div>
                 <Router history={history}>
                     <Route path="/" component={App}>
-                        <IndexRoute component={Home}/>
+                        <IndexRoute component={Movies}/>
                     </Route>
                 </Router>
 

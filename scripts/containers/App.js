@@ -27,6 +27,8 @@ import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import ItemsGrid from './ItemsGrid';
 
+import getPopularMovies from '../actions/themoviedb';
+
 
 //CSS
 //import "./page.scss";
@@ -39,6 +41,13 @@ class App extends Component {
 
         console.log("App constructor", this, props, context);
         this.state = {leftNavOpen: false};
+    }
+
+    componentDidMount () {
+        const {dispatch} = this.props;
+        //dispatch(initEnvironment());
+        dispatch(getPopularMovies());
+        //dispatch(initNavigator());
     }
 
     getChildContext() {
@@ -93,7 +102,8 @@ class App extends Component {
                 <CategoryTabs/>
             </AppBar>
 
-            <ItemsGrid></ItemsGrid>
+            {thisComponent.props.children}
+
 
         </div>
     }
