@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect, dispatch } from 'react-redux';
-import Actions from '../actions';
+import Actions from '../actions/themoviedb';
 import Theme from '../theme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
@@ -39,11 +39,12 @@ class App extends Component {
         this.onTitleTouchTap = this.onTitleTouchTap.bind(this);
         this.onAppBarRightIconClick = this.onAppBarRightIconClick.bind(this);
 
-        console.log("App constructor", this, props, context);
+        //console.log("App constructor", this, props, context);
         this.state = {leftNavOpen: false};
     }
 
-    componentDidMount () {
+    componentDidMount() {
+        //console.log("props", this.props)
         const {dispatch} = this.props;
         //dispatch(initEnvironment());
         dispatch(getPopularMovies());
@@ -60,12 +61,10 @@ class App extends Component {
         this.props.push("/");
     }
 
-    //getPageData(route, index) {
-    //    console.log("getpagedata", this.props);
-    //    //console.log("route", this.props.data.app.getIn(["pages"]).find((page) => (page.get("route") === route)).toJS());
-    //    return this.props.data.getIn(["pages"]).find((page) => (page.get("route") === route));
-    //
-    //}
+    getPageData(route, index) {
+        return this.props.movies;
+
+    }
 
     onAppBarRightIconClick() {
         console.log("asd")
@@ -102,8 +101,11 @@ class App extends Component {
                 <CategoryTabs/>
             </AppBar>
 
-            {thisComponent.props.children}
-
+            {React.Children.map(thisComponent.props.children, (child) => {
+                return React.cloneElement(child, {
+                    movies: thisComponent.getPageData(thisComponent.props.children.props.route.path)
+                })
+            })}
 
         </div>
     }
@@ -113,17 +115,23 @@ App.childContextTypes = {
     muiTheme: React.PropTypes.object
 };
 
-//function mapStateToProps(state) {
-//    console.log("map", state);
-//    return {data: state};
-//}
+App.propTypes = {
+    dispatch: React.PropTypes.func.isRequired,
+};
+
+function mapStateToProps(state) {
+    console.log("mapStateToProps", state);
+    return {movies: state.data.movies};
+}
 //
 //function mapDispatchToProps(dispatch) {
 //    return {actions: bindActionCreators(Actions, dispatch), push: routeActions.push};
 //}
 
 export default connect(
-    state => (state),
-    {push: routeActions.push}
+    mapStateToProps,
+    (dispatch) => {
+        return {push: routeActions.push, dispatch: dispatch}
+    }
 )(App);
 

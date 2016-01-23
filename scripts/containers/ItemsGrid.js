@@ -7,6 +7,8 @@ import IconButton from 'material-ui/lib/icon-button';
 export default class ItemsGrid extends React.Component {
 
     render() {
+        console.log("ItemsGrid.props", this.props);
+
         const tilesData = [
             {
                 img: 'http://image.tmdb.org/t/p/w300/kqjL17yufvn9OVLyXYpvtyrFfak.jpg',
@@ -66,12 +68,13 @@ export default class ItemsGrid extends React.Component {
 
         ];
 
-        const tileElements = tilesData.map(tile =>
+        let movies = this.props.movies.results || [];
+        const tileElements = movies.map(movie =>
             <GridTile
-                key={tile.img}
+                key={movie.id}
                 actionIcon={<IconButton></IconButton>}
                 style={{width: "187px", marginTop: "25px", paddingLeft: "15x"}}>
-                <img src={tile.img}/>
+                <img src={'http://image.tmdb.org/t/p/w300' + movie.poster_path}/>
             </GridTile>);
 
         const gridListStyle = {width: '1080px', height: '700px', overflowY: 'auto'};

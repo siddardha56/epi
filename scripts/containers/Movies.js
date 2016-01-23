@@ -3,6 +3,8 @@ import ItemsGrid from './ItemsGrid';
 
 export default class Movies extends React.Component {
     render() {
-        return <ItemsGrid></ItemsGrid>;
+        console.log("Movies.props", this.props);
+
+        return <ItemsGrid movies={this.props.movies}></ItemsGrid>;
     }
 }

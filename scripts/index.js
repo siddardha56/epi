@@ -17,6 +17,8 @@ import {
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import createHistory from 'history/lib/createHashHistory';
+import thunkMiddleware from 'redux-thunk';
+
 
 //import reducers from './reducers';
 import {rootReducer} from './reducers/rootReducer';
@@ -30,6 +32,7 @@ const reducer = combineReducers(Object.assign({}, {data: rootReducer}, {
     routing: routeReducer
 }));
 
+
 const DevTools = createDevTools(
     <DockMonitor toggleVisibilityKey='ctrl-h'
                  changePositionKey='ctrl-q'>
@@ -38,7 +41,7 @@ const DevTools = createDevTools(
 );
 
 const finalCreateStore = compose(
-    applyMiddleware(middleware),
+    applyMiddleware(middleware, thunkMiddleware),
     DevTools.instrument()
 )(createStore);
 
