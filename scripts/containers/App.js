@@ -25,7 +25,6 @@ import { routeActions } from 'redux-simple-router';
 import CategoryTabs from './CategoryTabs';
 
 
-import getPopularMovies from '../actions/themoviedb';
 
 //CSS
 import "../../styles/app.scss";
@@ -40,12 +39,7 @@ class App extends Component {
         this.state = {leftNavOpen: false};
     }
 
-    componentDidMount() {
-        const {dispatch} = this.props;
-        //dispatch(initEnvironment());
-        dispatch(getPopularMovies());
-        //dispatch(initNavigator());
-    }
+
 
     getChildContext() {
         return {
@@ -120,7 +114,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
     console.log("mapStateToProps", state);
-    return {movies: state.data.movies};
+    return {movies: state.data.get('movies')};
 }
 //
 //function mapDispatchToProps(dispatch) {

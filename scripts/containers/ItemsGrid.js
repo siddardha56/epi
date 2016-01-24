@@ -9,13 +9,13 @@ export default class ItemsGrid extends React.Component {
     render() {
         console.log("ItemsGrid.props", this.props);
 
-        let movies = this.props.movies.results || [];
+        let movies = this.props.movies.get('results') || [];
         const tileElements = movies.map(movie =>
             <GridTile
-                key={movie.id}
+                key={movie.get('id')}
                 actionIcon={<IconButton></IconButton>}
                 style={{width: "187px", marginTop: "25px", paddingLeft: "15x"}}>
-                <img src={'http://image.tmdb.org/t/p/w300' + movie.poster_path}/>
+                <img src={'http://image.tmdb.org/t/p/w300' + movie.get('poster_path')}/>
             </GridTile>);
 
         const gridListStyle = {width: '100%', height: '700px', overflowY: 'auto'};

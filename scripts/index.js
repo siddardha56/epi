@@ -67,7 +67,7 @@ render(
                     </Route>
                     <Route path="*" component={PageNotFound}/>
                 </Router>
-
+<DevTools/>
             </div>
         </Provider>
     </div>,
