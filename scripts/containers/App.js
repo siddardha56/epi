@@ -23,15 +23,13 @@ import FontIcon from 'material-ui/lib/font-icon';
 
 import { routeActions } from 'redux-simple-router';
 import CategoryTabs from './CategoryTabs';
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
-import ItemsGrid from './ItemsGrid';
+import LeftNav from './LeftNav';
 
 import getPopularMovies from '../actions/themoviedb';
 
 
 //CSS
-//import "./page.scss";
+import "../../styles/app.scss";
 
 class App extends Component {
     constructor(props, context) {
@@ -58,10 +56,12 @@ class App extends Component {
     }
 
     onTitleTouchTap() {
-        this.props.push("/");
+        console.log("intitle tap")
+        this.props.push("/movies");
     }
 
     getPageData(route, index) {
+        console.log("getPageData", route);
         return this.props.movies;
 
     }
@@ -90,7 +90,7 @@ class App extends Component {
                 onTitleTouchTap={this.onTitleTouchTap}
                 style={styles.appBar}
                 iconElementRight={
-                    <a href="http://www.github.com/arjunu/js-cook">
+                    <a href="http://www.github.com/arjunu/epi">
                         <IconButton
                             iconClassName="mdi mdi-github-circle"
                             tooltip="View source"
@@ -101,12 +101,14 @@ class App extends Component {
                 <CategoryTabs/>
             </AppBar>
 
-            {React.Children.map(thisComponent.props.children, (child) => {
-                return React.cloneElement(child, {
-                    movies: thisComponent.getPageData(thisComponent.props.children.props.route.path)
-                })
-            })}
-
+            <div className="two-column-wrapper">
+                <LeftNav className="left-nav"/>
+                {React.Children.map(this.props.children, (child) => {
+                    return React.cloneElement(child, {
+                        movies: this.getPageData(this.props.children.props.route.path)
+                    })
+                })}
+            </div>
         </div>
     }
 }

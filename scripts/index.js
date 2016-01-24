@@ -25,6 +25,8 @@ import {rootReducer} from './reducers/rootReducer';
 
 import App from './containers/App';
 import Movies from './containers/Movies';
+import TV from './containers/TV';
+import PageNotFound from './containers/PageNotFound';
 
 const history = createHistory();
 const middleware = syncHistory(history);
@@ -60,7 +62,11 @@ render(
                 <Router history={history}>
                     <Route path="/" component={App}>
                         <IndexRoute component={Movies}/>
+                        <Route path="movies" component={Movies}/>
+                        <Route path="tv" component={TV}/>
                     </Route>
+                    <Route path="*" component={PageNotFound}/>
+
                 </Router>
 
             </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
-import Slider from 'material-ui/lib/slider';
+import {connect} from 'react-redux';
+import { routeActions } from 'redux-simple-router';
 
 const styles = {
     headline: {
@@ -12,13 +13,20 @@ const styles = {
     },
 };
 
-function handleActive(tab) {
-    alert(`A tab with this route property ${tab.props.route} was activated.`);
-}
+class CategoryTabs extends React.Component {
+    constructor(props, context) {
+        super(props, context);
 
-export default class CategoryTabs extends React.Component {
+        this.handleActive = this.handleActive.bind(this);
+    }
+
+
+    handleActive(tab) {
+        this.props.push("/" + tab);
+    }
+
     render() {
-        let categories = ["Movies", "TV"];
+        let categories = [{label: "Movies", route: "movies"}, {label: "TV", route: "tv"}];
 
         let styles = {
             tabs: {
@@ -26,10 +34,11 @@ export default class CategoryTabs extends React.Component {
             }
         };
 
-        return <Tabs style={styles.tabs} >
+        return <Tabs style={styles.tabs}>
 
-            {categories.map(tab => {
-                return <Tab label={tab}>
+            {categories.map(category => {
+                return <Tab label={category.label}
+                               onActive={()=>(this.handleActive(category.route))}>
                 </Tab>
             })}
 
@@ -37,9 +46,7 @@ export default class CategoryTabs extends React.Component {
     }
 }
 
-
-/*
- <Tab
- label="onActive"
- route="/home"
- onActive={handleActive}/>*/
+export default connect(
+    null,
+    {push: routeActions.push}
+)(CategoryTabs);
