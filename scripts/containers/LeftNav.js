@@ -9,7 +9,6 @@ export default class LeftNav extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {selectedItem: "latest"};
         this.handleUpdateSelectedItem = this.handleUpdateSelectedItem.bind(this);
     }
 
@@ -19,15 +18,24 @@ export default class LeftNav extends React.Component {
     }
 
     render() {
+        console.log("LeftNav props", this.props);
+
         return <div style={{width: "20%", float: "left"}}>
             <SelectableList
-                valueLink={{value: this.state.selectedItem, requestChange: this.handleUpdateSelectedItem}}>
+                valueLink={{value: this.props.selectedItem, requestChange: this.handleUpdateSelectedItem}}>
 
-                <ListItem primaryText="Latest" value="latest"/>
-                <ListItem primaryText="Now playing" value="now_playing"/>
-                <ListItem primaryText="Popular" value="popular"/>
-                <ListItem primaryText="Top Rated" value="top_rated"/>
-                <ListItem primaryText="Upcoming" value="upcoming"/>
+                {this.props.items.map(item => {
+                    return <ListItem primaryText={item.label}
+                                     value={item.value}
+                                     key={item.value}
+                                     onTouchTap={()=>(this.props.onItemClick(item.value))}/>;
+                })}
+                <Divider/>
+                <ListItem primaryText="Watchlist"
+                          value="watchlist"/>
+                <ListItem primaryText="Watched"
+                          value="watched"/>
+
             </SelectableList>
         </div>;
     }

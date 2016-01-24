@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemsGrid from './ItemsGrid';
+import ItemsGrid from '../ItemsGrid';
 
 export default class TV extends React.Component {
     render() {

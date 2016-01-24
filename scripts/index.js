@@ -24,9 +24,9 @@ import thunkMiddleware from 'redux-thunk';
 import {rootReducer} from './reducers/rootReducer';
 
 import App from './containers/App';
-import Movies from './containers/Movies';
-import TV from './containers/TV';
-import PageNotFound from './containers/PageNotFound';
+import Movies from './containers/pages/Movies';
+import TV from './containers/pages/TV';
+import PageNotFound from './containers/pages/PageNotFound';
 
 const history = createHistory();
 const middleware = syncHistory(history);
@@ -38,7 +38,7 @@ const reducer = combineReducers(Object.assign({}, {data: rootReducer}, {
 const DevTools = createDevTools(
     <DockMonitor toggleVisibilityKey='ctrl-h'
                  changePositionKey='ctrl-q'>
-        <LogMonitor theme='tomorrow' />
+        <LogMonitor theme='tomorrow'/>
     </DockMonitor>
 );
 
@@ -66,7 +66,6 @@ render(
                         <Route path="tv" component={TV}/>
                     </Route>
                     <Route path="*" component={PageNotFound}/>
-
                 </Router>
 
             </div>

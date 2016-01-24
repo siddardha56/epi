@@ -23,10 +23,9 @@ import FontIcon from 'material-ui/lib/font-icon';
 
 import { routeActions } from 'redux-simple-router';
 import CategoryTabs from './CategoryTabs';
-import LeftNav from './LeftNav';
+
 
 import getPopularMovies from '../actions/themoviedb';
-
 
 //CSS
 import "../../styles/app.scss";
@@ -42,7 +41,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        //console.log("props", this.props)
         const {dispatch} = this.props;
         //dispatch(initEnvironment());
         dispatch(getPopularMovies());
@@ -101,14 +99,13 @@ class App extends Component {
                 <CategoryTabs/>
             </AppBar>
 
-            <div className="two-column-wrapper">
-                <LeftNav className="left-nav"/>
+
                 {React.Children.map(this.props.children, (child) => {
                     return React.cloneElement(child, {
                         movies: this.getPageData(this.props.children.props.route.path)
                     })
                 })}
-            </div>
+
         </div>
     }
 }

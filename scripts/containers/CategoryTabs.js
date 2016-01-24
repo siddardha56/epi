@@ -26,7 +26,7 @@ class CategoryTabs extends React.Component {
     }
 
     render() {
-        let categories = [{label: "Movies", route: "movies"}, {label: "TV", route: "tv"}];
+        let categories = [{label: "Movies", route: "movies?sortBy=latest"}, {label: "TV", route: "tv"}];
 
         let styles = {
             tabs: {
@@ -38,7 +38,8 @@ class CategoryTabs extends React.Component {
 
             {categories.map(category => {
                 return <Tab label={category.label}
-                               onActive={()=>(this.handleActive(category.route))}>
+                            onActive={()=>(this.handleActive(category.route))}
+                            key={category.route}>
                 </Tab>
             })}
 
