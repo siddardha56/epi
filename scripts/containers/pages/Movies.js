@@ -16,20 +16,20 @@ class Movies extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Component did mount");
+        //console.log("Component did mount");
         let sortBy = this.props.location.query.sortBy || 'now-playing';
         this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
     }
 
     loadPage(route) {
         let sortBy = route || 'now-playing';
-        console.log("Load page", this.props.movies.getIn([sortBy, 'lastUpdated']));
+        //console.log("Load page", this.props.movies.getIn([sortBy, 'lastUpdated']));
         this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
         this.props.dispatch(routeActions.push("/movies?sortBy=" + route));
     }
 
     render() {
-        console.log("Movies.props", this.props.movies.toJS(), this.props.location.query.sortBy);
+        //console.log("Movies.props", this.props.movies.toJS(), this.props.location.query.sortBy);
         let leftNavItems = [
             //{label: "Latest", value: "latest"},
             {label: "Now playing", value: "now-playing"},
@@ -44,8 +44,9 @@ class Movies extends React.Component {
                      onItemClick={this.loadPage}
                      selectedItem={this.props.location.query.sortBy}/>
             {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
-            <ItemsGrid
-                movies={this.props.movies.get(this.props.location.query.sortBy)||this.props.movies.get('now-playing')}></ItemsGrid>
+            <ItemsGrid className="items-grid"
+                       movies={this.props.movies.get(this.props.location.query.sortBy)||this.props.movies.get('now-playing')}>
+            </ItemsGrid>
         </div>
     }
 }
@@ -55,7 +56,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    console.log("Movies mapStateToProps", state);
+    //console.log("Movies mapStateToProps", state);
     return {movies: state.data.get('movies'), location: state.routing.location};
 }
 

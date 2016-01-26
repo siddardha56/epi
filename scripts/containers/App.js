@@ -1,13 +1,8 @@
 import React from 'react';
-import { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect, dispatch } from 'react-redux';
 import Actions from '../actions/themoviedb';
 import Theme from '../theme';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import { RouteHandler } from 'react-router';
-import { Router, Route, Link } from 'react-router'
 
 //Components
 import AppBar from 'material-ui/lib/app-bar';
@@ -16,6 +11,7 @@ import IconButton from 'material-ui/lib/icon-button';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import ListItem from 'material-ui/lib/lists/list-item';
+import CardItem from '../components/Card';
 
 import * as Immutable from 'immutable';
 
@@ -28,7 +24,7 @@ import CategoryTabs from './CategoryTabs';
 //CSS
 import "../../styles/app.scss";
 
-class App extends Component {
+class App extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.onTitleTouchTap = this.onTitleTouchTap.bind(this);
