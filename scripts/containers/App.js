@@ -11,7 +11,6 @@ import IconButton from 'material-ui/lib/icon-button';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import ListItem from 'material-ui/lib/lists/list-item';
-import CardItem from '../components/Card';
 
 import * as Immutable from 'immutable';
 

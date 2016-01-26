@@ -27,25 +27,25 @@ export default class ItemsGrid extends React.Component {
     }
 
     render() {
-        //console.log("ItemsGrid.props", this.props);
+        console.log("ItemsGrid.props", this.props);
 
-        let movies = this.props.movies.get('results') || [];
-        const tileElements = movies.map(movie => {
-            let posterURL = (movie.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + movie.get('poster_path') : '');
+        let items = this.props.items.get('results') || [];
+        const tileElements = items.map(item => {
+            let posterURL = (item.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + item.get('poster_path') : '');
 
             return <GridTile
-                key={movie.get('id')}
+                key={item.get('id')}
                 actionIcon={<IconButton></IconButton>}
                 style={{width: "187px", marginTop: "25px", paddingLeft: "15x"}}>
                 <Card style={{width: '187px', height: '280px'}}
-                      ref={movie.get('id')}
-                      zDepth={this.state.onHoverItemId === movie.get('id') ? 3 :1}
-                      onMouseEnter={()=>(this.onCardMouseEnter(movie.get('id')))}
-                      onMouseLeave={()=>(this.onCardMouseLeave(movie.get('id')))}>
+                      ref={item.get('id')}
+                      zDepth={this.state.onHoverItemId === item.get('id') ? 3 :1}
+                      onMouseEnter={()=>(this.onCardMouseEnter(item.get('id')))}
+                      onMouseLeave={()=>(this.onCardMouseLeave(item.get('id')))}>
                     <img src={posterURL} style={{width: '187px', height: '280px'}}/>
                 </Card>
                 <CardText style={{textAlign:"center"}}>
-                    {movie.get('title')}
+                    {item.get('title')||item.get('name')}
                 </CardText>
             </GridTile>
         });

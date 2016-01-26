@@ -4,7 +4,7 @@ import LeftNav from '../LeftNav';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
 import Loader from '../../components/Loader';
-import getMovies from '../../actions/themoviedb';
+import {getMovies} from '../../actions/themoviedb';
 
 
 class Movies extends React.Component {
@@ -16,13 +16,13 @@ class Movies extends React.Component {
     }
 
     componentDidMount() {
-        //console.log("Component did mount");
-        let sortBy = this.props.location.query.sortBy || 'now-playing';
+        console.log("Movies Component did mount");
+        let sortBy = this.props.location.query.sortBy || 'now_playing';
         this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
     }
 
     loadPage(route) {
-        let sortBy = route || 'now-playing';
+        let sortBy = route || 'now_playing';
         //console.log("Load page", this.props.movies.getIn([sortBy, 'lastUpdated']));
         this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
         this.props.dispatch(routeActions.push("/movies?sortBy=" + route));
@@ -32,9 +32,9 @@ class Movies extends React.Component {
         //console.log("Movies.props", this.props.movies.toJS(), this.props.location.query.sortBy);
         let leftNavItems = [
             //{label: "Latest", value: "latest"},
-            {label: "Now playing", value: "now-playing"},
+            {label: "Now playing", value: "now_playing"},
             {label: "Popular", value: "popular"},
-            {label: "Top Rated", value: "top-rated"},
+            {label: "Top Rated", value: "top_rated"},
             {label: "Upcoming", value: "upcoming"}
         ];
 
@@ -45,7 +45,7 @@ class Movies extends React.Component {
                      selectedItem={this.props.location.query.sortBy}/>
             {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
             <ItemsGrid className="items-grid"
-                       movies={this.props.movies.get(this.props.location.query.sortBy)||this.props.movies.get('now-playing')}>
+                       items={this.props.movies.get(this.props.location.query.sortBy)||this.props.movies.get('now_playing')}>
             </ItemsGrid>
         </div>
     }

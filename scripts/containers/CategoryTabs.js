@@ -26,7 +26,7 @@ class CategoryTabs extends React.Component {
     }
 
     render() {
-        let categories = [{label: "Movies", route: "movies?sortBy=now-playing"}, {label: "TV", route: "tv"}];
+        let categories = [{label: "Movies", route: "movies?sortBy=now_playing"}, {label: "TV", route: "tv?sortBy=on_the_air"}];
 
         let styles = {
             tabs: {
