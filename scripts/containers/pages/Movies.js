@@ -16,22 +16,22 @@ class Movies extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(getMovies(this.props.location.query.sortBy));
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log("componentWillReceiveProps");
+        console.log("Component did mount");
+        let sortBy = this.props.location.query.sortBy || 'now-playing';
+        this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
     }
 
     loadPage(route) {
-        this.props.dispatch(getMovies(route));
+        let sortBy = route || 'now-playing';
+        console.log("Load page", this.props.movies.getIn([sortBy, 'lastUpdated']));
+        this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
         this.props.dispatch(routeActions.push("/movies?sortBy=" + route));
     }
 
     render() {
-        console.log("Movies.props", this.props.movies.get(this.props.location.query.sortBy));
+        console.log("Movies.props", this.props.movies.toJS(), this.props.location.query.sortBy);
         let leftNavItems = [
-            {label: "Latest", value: "latest"},
+            //{label: "Latest", value: "latest"},
             {label: "Now playing", value: "now-playing"},
             {label: "Popular", value: "popular"},
             {label: "Top Rated", value: "top-rated"},
@@ -44,7 +44,8 @@ class Movies extends React.Component {
                      onItemClick={this.loadPage}
                      selectedItem={this.props.location.query.sortBy}/>
             {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
-            <ItemsGrid movies={this.props.movies.get(this.props.location.query.sortBy)}></ItemsGrid>
+            <ItemsGrid
+                movies={this.props.movies.get(this.props.location.query.sortBy)||this.props.movies.get('now-playing')}></ItemsGrid>
         </div>
     }
 }
@@ -53,11 +54,14 @@ function mapDispatchToProps(dispatch) {
     return {dispatch: dispatch}
 }
 
+function mapStateToProps(state) {
+    console.log("Movies mapStateToProps", state);
+    return {movies: state.data.get('movies'), location: state.routing.location};
+}
+
 
 export default connect(
-    (state) => {
-        return {location: state.routing.location};
-    },
+    mapStateToProps,
     mapDispatchToProps
 )
 (Movies);

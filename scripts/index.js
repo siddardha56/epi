@@ -2,27 +2,32 @@
 
 import '../styles/main.scss';
 
-import { createDevTools } from 'redux-devtools';
-import LogMonitor from 'redux-devtools-log-monitor';
-import DockMonitor from 'redux-devtools-dock-monitor';
-
+//React
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+
+//Redux
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+
+//Router
 import { Router, Route, IndexRoute } from 'react-router'
 import {
     syncHistory, routeReducer
 } from 'redux-simple-router';
+import { createHistory } from 'history'
+//Dev tools
+import { createDevTools } from 'redux-devtools';
+import LogMonitor from 'redux-devtools-log-monitor';
+import DockMonitor from 'redux-devtools-dock-monitor';
 
+//Mui
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import createHistory from 'history/lib/createHashHistory';
-import thunkMiddleware from 'redux-thunk';
 
-
-//import reducers from './reducers';
 import {rootReducer} from './reducers/rootReducer';
 
+//components
 import App from './containers/App';
 import Movies from './containers/pages/Movies';
 import TV from './containers/pages/TV';
@@ -33,7 +38,6 @@ const middleware = syncHistory(history);
 const reducer = combineReducers(Object.assign({}, {data: rootReducer}, {
     routing: routeReducer
 }));
-
 
 const DevTools = createDevTools(
     <DockMonitor toggleVisibilityKey='ctrl-h'
@@ -50,7 +54,6 @@ const finalCreateStore = compose(
 const store = finalCreateStore(reducer);
 middleware.listenForReplays(store);
 
-//required for material-ui to work with react
 injectTapEventPlugin();
 
 const rootElement = document.getElementById('root');
@@ -67,7 +70,7 @@ render(
                     </Route>
                     <Route path="*" component={PageNotFound}/>
                 </Router>
-<DevTools/>
+            <DevTools/>
             </div>
         </Provider>
     </div>,

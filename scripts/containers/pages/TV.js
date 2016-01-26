@@ -5,6 +5,7 @@ export default class TV extends React.Component {
     render() {
         console.log("TV.props", this.props);
 
-        return <ItemsGrid movies={[]}></ItemsGrid>;
+        //return <ItemsGrid movies={[]}></ItemsGrid>;
+        return <div></div>;
     }
 }

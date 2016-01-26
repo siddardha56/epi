@@ -25,7 +25,6 @@ import { routeActions } from 'redux-simple-router';
 import CategoryTabs from './CategoryTabs';
 
 
-
 //CSS
 import "../../styles/app.scss";
 
@@ -40,7 +39,6 @@ class App extends Component {
     }
 
 
-
     getChildContext() {
         return {
             muiTheme: ThemeManager.getMuiTheme(Theme)
@@ -48,13 +46,12 @@ class App extends Component {
     }
 
     onTitleTouchTap() {
-        console.log("intitle tap")
         this.props.push("/movies");
     }
 
     getPageData(route, index) {
-        console.log("getPageData", route);
-        return this.props.movies;
+        console.log("getPageData", this.props, route);
+        return this.props.data.movies;
 
     }
 
@@ -93,13 +90,7 @@ class App extends Component {
                 <CategoryTabs/>
             </AppBar>
 
-
-                {React.Children.map(this.props.children, (child) => {
-                    return React.cloneElement(child, {
-                        movies: this.getPageData(this.props.children.props.route.path)
-                    })
-                })}
-
+            {this.props.children}
         </div>
     }
 }
@@ -112,17 +103,13 @@ App.propTypes = {
     dispatch: React.PropTypes.func.isRequired,
 };
 
-function mapStateToProps(state) {
-    console.log("mapStateToProps", state);
-    return {movies: state.data.get('movies')};
-}
-//
-//function mapDispatchToProps(dispatch) {
-//    return {actions: bindActionCreators(Actions, dispatch), push: routeActions.push};
+//function mapStateToProps(state) {
+//    console.log("mapStateToProps", state.data.toJS());
+//    return {movies: state.data.get('movies')};
 //}
 
 export default connect(
-    mapStateToProps,
+    null,
     (dispatch) => {
         return {push: routeActions.push, dispatch: dispatch}
     }
