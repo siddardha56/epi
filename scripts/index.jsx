@@ -28,10 +28,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import {rootReducer} from './reducers/rootReducer';
 
 //components
-import App from './containers/App';
-import Movies from './containers/pages/Movies';
-import TV from './containers/pages/TV';
-import PageNotFound from './containers/pages/PageNotFound';
+import App from './containers/App.jsx';
+import Movies from './containers/pages/Movies.jsx';
+import TV from './containers/pages/TV.jsx';
+import PageNotFound from './containers/pages/PageNotFound.jsx';
 
 const history = createHistory();
 const middleware = syncHistory(history);

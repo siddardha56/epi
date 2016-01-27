@@ -3,7 +3,7 @@ import {API_KEY} from '../constants/api-key';
 import * as actionTypes from '../constants/action-types';
 
 export function getMovies(sortBy, lastUpdated = 0) {
-    console.log("get Movies")
+    console.log("get Movies");
     return dispatch => {
         if ((new Date()).getTime() - lastUpdated > 300000) {//if data is older than 5 mins
             dispatch(setMoviesState(true));

@@ -1,9 +1,9 @@
 import React from 'react';
-import ItemsGrid from '../ItemsGrid';
-import LeftNav from '../LeftNav';
+import ItemsGrid from '../ItemsGrid.jsx';
+import LeftNav from '../LeftNav.jsx';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'redux-simple-router';
-import Loader from '../../components/Loader';
+import Loader from '../../components/Loader.jsx';
 import {getTV} from '../../actions/themoviedb';
 
 

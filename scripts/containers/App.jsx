@@ -17,7 +17,7 @@ import * as Immutable from 'immutable';
 import FontIcon from 'material-ui/lib/font-icon';
 
 import { routeActions } from 'redux-simple-router';
-import CategoryTabs from './CategoryTabs';
+import CategoryTabs from './CategoryTabs.jsx';
 
 
 //CSS
