@@ -5,11 +5,10 @@ import thunkMiddleware from 'redux-thunk';
 //Router
 import {
     syncHistory, routeReducer
-} from 'redux-simple-router';
+} from 'react-router-redux';
 import { createHistory } from 'history'
 import {rootReducer} from './reducers/rootReducer';
 import {DevTools} from './DevTools.js';
-
 
 export const history = createHistory();
 
@@ -26,7 +25,3 @@ const finalCreateStore = compose(
 
 export const store = finalCreateStore(reducer);
 middleware.listenForReplays(store);
-
-function SE(){
-    console.log("SE", arguments);
-}

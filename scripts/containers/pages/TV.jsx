@@ -2,7 +2,7 @@ import React from 'react';
 import ItemsGrid from '../ItemsGrid.jsx';
 import LeftNav from '../LeftNav.jsx';
 import { connect, dispatch } from 'react-redux';
-import { routeActions } from 'redux-simple-router';
+import { routeActions } from 'react-router-redux';
 import Loader from '../../components/Loader.jsx';
 import {getTV} from '../../actions/themoviedb';
 
