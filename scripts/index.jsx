@@ -20,6 +20,7 @@ import PageNotFound from './containers/pages/PageNotFound.jsx';
 import {DevTools} from './DevTools.js';
 import {store} from './createStore';
 import {history} from './createStore';
+import Tracer from './Tracer.jsx';
 
 injectTapEventPlugin();
 
@@ -38,6 +39,7 @@ render(
                     <Route path="*" component={PageNotFound}/>
                 </Router>
                 <DevTools/>
+                <Tracer/>
             </div>
         </Provider>
     </div>,

@@ -36,14 +36,18 @@ export default class TV extends React.Component {
             {label: "Popular", value: "popular"}
         ];
 
+        let selectedItem = 'on_the_air';
+        if (this.props.location && this.props.location.query)
+            selectedItem = this.props.location.query.sortBy;
+
         return <div className="two-column-wrapper">
             <LeftNav className="left-nav"
                      items={leftNavItems}
                      onItemClick={this.loadPage}
-                     selectedItem={this.props.location.query.sortBy}/>
+                     selectedItem={selectedItem}/>
             {this.props.tv.getIn(['state', 'isLoading']) ? <Loader/> : ''}
             <ItemsGrid className="items-grid"
-                       items={this.props.tv.get(this.props.location.query.sortBy)||this.props.tv.get('on_the_air')}>
+                       items={this.props.tv.get(selectedItem)}>
             </ItemsGrid>
         </div>
     }

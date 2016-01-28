@@ -27,7 +27,7 @@ export default class ItemsGrid extends React.Component {
     }
 
     render() {
-        console.log("ItemsGrid.props", this.props);
+        //console.log("ItemsGrid.props", this.props);
 
         let items = this.props.items.get('results') || [];
         const tileElements = items.map(item => {
