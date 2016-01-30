@@ -6,7 +6,7 @@ const styles = {
   base: {
     cursor: 'pointer',
     fontWeight: 'bold',
-    borderRadius: 3,
+    //borderRadius: 3,
     padding: 4,
     marginLeft: 3,
     marginRight: 3,
@@ -15,7 +15,6 @@ const styles = {
     flexGrow: 1,
     display: 'inline-block',
     fontSize: '0.8em',
-    color: 'white',
     textDecoration: 'none'
   }
 };
@@ -66,20 +65,22 @@ export default class LogMonitorButton extends React.Component {
   render() {
     let style = {
       ...styles.base,
-      backgroundColor: this.props.theme.base02
+      backgroundColor: this.props.theme.base06,
+      color: this.props.theme.base0F,
+      //border: "1px solid " + this.props.theme.base06
     };
     if (this.props.enabled && this.state.hovered) {
       style = {
         ...style,
-        backgroundColor: brighten(this.props.theme.base02, 0.2)
+        backgroundColor: this.props.theme.base06
       };
     }
     if (!this.props.enabled) {
       style = {
         ...style,
-        opacity: 0.2,
-        cursor: 'text',
-        backgroundColor: 'transparent'
+        //opacity: 0.2,
+        cursor: 'auto',
+        backgroundColor: this.props.theme.base02
       };
     }
     return (

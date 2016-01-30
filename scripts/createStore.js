@@ -24,4 +24,5 @@ const finalCreateStore = compose(
 )(createStore);
 
 export const store = finalCreateStore(reducer);
+console.log("store", store);
 middleware.listenForReplays(store);

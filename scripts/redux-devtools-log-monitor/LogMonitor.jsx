@@ -7,9 +7,12 @@ import { ActionCreators } from 'redux-devtools';
 import { updateScrollTop } from './actions';
 import reducer from './reducers';
 import ReactDOM from 'react-dom';
+import './style.scss';
 //import {store} from '../createStore';
 
 const { reset, rollback, commit, sweep, toggleAction } = ActionCreators;
+
+
 
 const styles = {
     container: {
@@ -34,7 +37,7 @@ const styles = {
         position: 'absolute',
         left: 0,
         right: 0,
-        top: 100,
+        top: 38,
         bottom: 0,
         overflowX: 'hidden',
         overflowY: 'auto'
@@ -168,7 +171,7 @@ export default class LogMonitor extends Component {
             const action = actionsById[actionId].action;
             const { state, error } = computedStates[i];
 
-            trace.push({action, state: {data: state.data.toJS(), ...state}});
+            trace.push({action});
         }
         //console.log("trace", trace);
 
@@ -179,7 +182,7 @@ export default class LogMonitor extends Component {
     applyTrace() {
         let trace = JSON.parse(ReactDOM.findDOMNode(this.refs.textAreaValue).value);
         //console.log("trace", ReactDOM.findDOMNode(this.refs.textAreaValue).value);
-        console.log("trace", trace[2], ActionCreators)
+        console.log("trace", trace[2], ActionCreators);
         //this.props.dispatch(ActionCreators.performAction(trace[2].action));
         for (let i = 0; i < trace.length; i++) {
             this.props.dispatch(ActionCreators.performAction(trace[i].action));
@@ -187,17 +190,40 @@ export default class LogMonitor extends Component {
     }
 
     getTheme() {
-        let { theme } = this.props;
-        if (typeof theme !== 'string') {
-            return theme;
-        }
+        let theme = {
+            scheme: 'nicinabox',
+            author: 'nicinabox (http://github.com/nicinabox)',
+            base00: '#000000',
+            base01: '#000000',
+            base02: '#2E8033',
+            base03: '#4ACC58', //rhs opened
+            base04: '#b0b0b0', // based on ocean theme
+            base05: '#d0d0d0', // based on ocean theme
+            base06: '#5DFE6B', //primary color
+            base07: '#f5f5f5', // based on ocean theme
+            base08: '#2E8033', // done
+            base09: '#2E8033', //done
+            base0A: '#ddb26f', //
+            base0B: '#2E8033', //un open accordion
+            base0C: '#12cfc0', //
+            base0D: '#55DE5D', ///lhs
+            base0E: '#2E8033', //entries
+            base0F: '#000000'  // done
+        };
 
-        if (typeof themes[theme] !== 'undefined') {
-            return themes[theme];
-        }
+        return theme;
 
-        console.warn('DevTools theme ' + theme + ' not found, defaulting to nicinabox');
-        return themes.nicinabox;
+        //let { theme } = this.props;
+        //if (typeof theme !== 'string') {
+        //    return theme;
+        //}
+        //
+        //if (typeof themes[theme] !== 'undefined') {
+        //    return themes[theme];
+        //}
+        //
+        //console.warn('DevTools theme ' + theme + ' not found, defaulting to nicinabox');
+        //return themes.nicinabox;
     }
 
     render() {
@@ -230,24 +256,25 @@ export default class LogMonitor extends Component {
         }
 
         return (
-            <div style={{...styles.container, backgroundColor: theme.base00}}>
-                <div style={{...styles.buttonBar, borderColor: theme.base02}}>
-                    <LogMonitorButton
-                        theme={theme}
-                        onClick={this.copyTrace}
-                        enabled>
-                        Get trace
-                    </LogMonitorButton>
-                    <LogMonitorButton
-                        theme={theme}
-                        onClick={this.applyTrace}
-                        enabled>
-                        Apply trace
-                    </LogMonitorButton>
-                </div>
-                <div style={{...styles.buttonBar, borderColor: theme.base02}}>
-                    <textarea ref="textAreaValue"></textarea>
-                </div>
+            <div className="container" style={{...styles.container, backgroundColor: theme.base00}}>
+                {/*<div style={{...styles.buttonBar, borderColor: theme.base02}}>
+                 <LogMonitorButton
+                 theme={theme}
+                 onClick={this.copyTrace}
+                 enabled>
+                 Get trace
+                 </LogMonitorButton>
+                 <LogMonitorButton
+                 theme={theme}
+                 onClick={this.applyTrace}
+                 enabled>
+                 Apply trace
+                 </LogMonitorButton>
+                 </div>
+                 <div style={{...styles.buttonBar, borderColor: theme.base02}}>
+                 <textarea ref="textAreaValue"></textarea>
+                 </div>
+                 */}
                 <div style={{...styles.buttonBar, borderColor: theme.base02}}>
                     <LogMonitorButton
                         theme={theme}
@@ -274,9 +301,10 @@ export default class LogMonitor extends Component {
                         Commit
                     </LogMonitorButton>
                 </div>
-                <div style={styles.elements} ref='container'>
+                <div  className="screen"  style={styles.elements} ref='container'>
                     {elements}
                 </div>
+                <div className="scan"></div>
             </div>
         );
     }
