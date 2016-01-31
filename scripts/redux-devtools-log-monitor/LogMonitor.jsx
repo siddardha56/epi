@@ -3,15 +3,15 @@ import LogMonitorEntry from './LogMonitorEntry.jsx';
 import LogMonitorButton from './LogMonitorButton.jsx';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import * as themes from 'redux-devtools-themes';
+import pipboyColors from './pipboyColors';
 import { ActionCreators } from 'redux-devtools';
 import { updateScrollTop } from './actions';
 import reducer from './reducers';
 import ReactDOM from 'react-dom';
-import './style.scss';
+import './style.css';
 //import {store} from '../createStore';
 
 const { reset, rollback, commit, sweep, toggleAction } = ActionCreators;
-
 
 
 const styles = {
@@ -190,40 +190,22 @@ export default class LogMonitor extends Component {
     }
 
     getTheme() {
-        let theme = {
-            scheme: 'nicinabox',
-            author: 'nicinabox (http://github.com/nicinabox)',
-            base00: '#000000',
-            base01: '#000000',
-            base02: '#2E8033',
-            base03: '#4ACC58', //rhs opened
-            base04: '#b0b0b0', // based on ocean theme
-            base05: '#d0d0d0', // based on ocean theme
-            base06: '#5DFE6B', //primary color
-            base07: '#f5f5f5', // based on ocean theme
-            base08: '#2E8033', // done
-            base09: '#2E8033', //done
-            base0A: '#ddb26f', //
-            base0B: '#2E8033', //un open accordion
-            base0C: '#12cfc0', //
-            base0D: '#55DE5D', ///lhs
-            base0E: '#2E8033', //entries
-            base0F: '#000000'  // done
-        };
+        let { theme } = this.props;
 
+        if (theme === 'pipboy') {
+            return pipboyColors;
+        }
+
+        if (typeof theme !== 'string') {
+            return theme;
+        }
+
+        if (typeof themes[theme] !== 'undefined') {
+            return themes[theme];
+        }
+
+        console.warn('DevTools theme ' + theme + ' not found, defaulting to pipboy');
         return theme;
-
-        //let { theme } = this.props;
-        //if (typeof theme !== 'string') {
-        //    return theme;
-        //}
-        //
-        //if (typeof themes[theme] !== 'undefined') {
-        //    return themes[theme];
-        //}
-        //
-        //console.warn('DevTools theme ' + theme + ' not found, defaulting to nicinabox');
-        //return themes.nicinabox;
     }
 
     render() {
@@ -256,7 +238,7 @@ export default class LogMonitor extends Component {
         }
 
         return (
-            <div className="container" style={{...styles.container, backgroundColor: theme.base00}}>
+            <div className={theme.scheme === 'pipboy'? 'container': ''} style={{...styles.container, backgroundColor: theme.base00}}>
                 {/*<div style={{...styles.buttonBar, borderColor: theme.base02}}>
                  <LogMonitorButton
                  theme={theme}
@@ -301,10 +283,10 @@ export default class LogMonitor extends Component {
                         Commit
                     </LogMonitorButton>
                 </div>
-                <div  className="screen"  style={styles.elements} ref='container'>
+                <div className={theme.scheme === 'pipboy'? 'elements': ''} style={styles.elements} ref='container'>
                     {elements}
                 </div>
-                <div className="scan"></div>
+                {theme.scheme === 'pipboy'? <div className="scan"></div> : ''}
             </div>
         );
     }

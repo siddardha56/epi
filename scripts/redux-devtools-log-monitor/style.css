@@ -1,0 +1,133 @@
+.container::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.container::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.container::after {
+  animation: flicker 5s infinite;
+}
+
+.elements {
+  width: 100%;
+  height: 100%;
+}
+
+.scan {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 75px;
+  animation: scan 10s infinite;
+  background: linear-gradient(rgba(93, 254, 107, 0.06),
+          rgba(93, 254, 107, 0.11), rgba(93, 254, 107, 0.11),
+          rgba(93, 254, 107, 0.11), rgba(93, 254, 107, 0.06));
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.219;
+  }
+  1% {
+    opacity: 0.50674;
+  }
+  2% {
+    opacity: 0.22299;
+  }
+  3% {
+    opacity: 0.62616;
+  }
+  4% {
+    opacity: 0.35774;
+  }
+  5% {
+    opacity: 0.20629;
+  }
+  6% {
+    opacity: 0.24199;
+  }
+  7% {
+    opacity: 0.14073;
+  }
+  8% {
+    opacity: 0.41921;
+  }
+  9% {
+    opacity: 0.39235;
+  }
+  10% {
+    opacity: 0.83844;
+  }
+  11% {
+    opacity: 0.00963;
+  }
+  12% {
+    opacity: 0.31549;
+  }
+  13% {
+    opacity: 0.37751;
+  }
+  14% {
+    opacity: 0.47599;
+  }
+  15% {
+    opacity: 0.1242;
+  }
+  16% {
+    opacity: 0.8003;
+  }
+  17% {
+    opacity: 0.25893;
+  }
+  18% {
+    opacity: 0.50041;
+  }
+  19% {
+    opacity: 0.64236;
+  }
+  20% {
+    opacity: 0.39846;
+  }
+  100% {
+    opacity: 0.39846;
+  }
+}
+
+@keyframes scan {
+  0% {
+    top: 0px;
+    display: none;
+  }
+
+  50% {
+    display: block;
+    top: 800px;
+  }
+
+  100% {
+    top: 800px;
+  }
+
+}
