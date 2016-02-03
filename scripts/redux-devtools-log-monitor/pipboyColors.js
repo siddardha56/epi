@@ -28,5 +28,3 @@ export default  {
     base0E: pipboyColors.primaryDark3,
     base0F: pipboyColors.black
 };
-
-

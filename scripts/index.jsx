@@ -14,6 +14,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 //components
 import App from './containers/App.jsx';
 import Movies from './containers/pages/Movies.jsx';
+import MovieDetail from './containers/pages/MovieDetail.jsx';
 import TV from './containers/pages/TV.jsx';
 import PageNotFound from './containers/pages/PageNotFound.jsx';
 
@@ -34,6 +35,7 @@ render(
                     <Route path="/" component={App}>
                         <IndexRoute component={Movies}/>
                         <Route path="movies" component={Movies}/>
+                        <Route path="/movie/:id" component={MovieDetail}/>
                         <Route path="tv" component={TV}/>
                     </Route>
                     <Route path="*" component={PageNotFound}/>

@@ -25,6 +25,7 @@ const styles = {
         direction: 'ltr'
     },
     buttonBar: {
+        padding: '15px 0',
         textAlign: 'center',
         borderBottomWidth: 1,
         borderBottomStyle: 'solid',
@@ -34,13 +35,29 @@ const styles = {
         flexDirection: 'row'
     },
     elements: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 38,
-        bottom: 0,
+        //position: 'absolute',
+        //left: 0,
+        //right: 0,
+        //top: 38,
+        //bottom: 0,
+        maxHeight: "calc(100% - 233px)",
         overflowX: 'hidden',
         overflowY: 'auto'
+    },
+    textAreaDebug: {
+        margin: '5px',
+        padding: '5px',
+        resize: 'none',
+        color: '#5DFE6B',
+        background: 'rgba(93, 254, 107, 0.1)',
+        //border: '1px solid #313131',
+        //boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.53)',
+        minHeight: '90px',
+        minWidth: '97%',
+        marginTop: '5px',
+        marginBottom: '5px',
+        outline: 'none',
+        border: '1px solid rgba(93, 254, 107, 0.57)'
     }
 };
 
@@ -238,25 +255,25 @@ export default class LogMonitor extends Component {
         }
 
         return (
-            <div className={theme.scheme === 'pipboy'? 'container': ''} style={{...styles.container, backgroundColor: theme.base00}}>
-                {/*<div style={{...styles.buttonBar, borderColor: theme.base02}}>
-                 <LogMonitorButton
-                 theme={theme}
-                 onClick={this.copyTrace}
-                 enabled>
-                 Get trace
-                 </LogMonitorButton>
-                 <LogMonitorButton
-                 theme={theme}
-                 onClick={this.applyTrace}
-                 enabled>
-                 Apply trace
-                 </LogMonitorButton>
-                 </div>
-                 <div style={{...styles.buttonBar, borderColor: theme.base02}}>
-                 <textarea ref="textAreaValue"></textarea>
-                 </div>
-                 */}
+            <div className={theme.scheme === 'pipboy'? 'container': ''}
+                 style={{...styles.container, backgroundColor: theme.base00}}>
+                <div style={{...styles.buttonBar, borderColor: theme.base02}}>
+                    <LogMonitorButton
+                        theme={theme}
+                        onClick={this.copyTrace}
+                        enabled>
+                        Get trace
+                    </LogMonitorButton>
+                    <LogMonitorButton
+                        theme={theme}
+                        onClick={this.applyTrace}
+                        enabled>
+                        Apply trace
+                    </LogMonitorButton>
+                </div>
+                <div style={{borderColor: theme.base02}}>
+                    <textarea className="input" ref="textAreaValue" style={{...styles.textAreaDebug}}></textarea>
+                </div>
                 <div style={{...styles.buttonBar, borderColor: theme.base02}}>
                     <LogMonitorButton
                         theme={theme}
@@ -286,7 +303,7 @@ export default class LogMonitor extends Component {
                 <div className={theme.scheme === 'pipboy'? 'elements': ''} style={styles.elements} ref='container'>
                     {elements}
                 </div>
-                {theme.scheme === 'pipboy'? <div className="scan"></div> : ''}
+                {theme.scheme === 'pipboy' ? <div className="scan"></div> : ''}
             </div>
         );
     }

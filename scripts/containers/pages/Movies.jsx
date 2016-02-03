@@ -13,12 +13,19 @@ class Movies extends React.Component {
         super(props, context);
 
         this.loadPage = this.loadPage.bind(this);
+        this.loadMovieDetail = this.loadMovieDetail.bind(this);
     }
 
     componentDidMount() {
-        console.log("Movies Component did mount");
+        console.log("Movies mount");
         let sortBy = this.props.location.query.sortBy || 'now_playing';
         this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
+    }
+
+    loadMovieDetail(){
+        console.log("loadMovieDetail");
+
+        this.props.dispatch(routeActions.push("/movie/1"));
     }
 
     loadPage(route) {
@@ -29,7 +36,7 @@ class Movies extends React.Component {
     }
 
     render() {
-        //console.log("Movies.props", this.props.movies.toJS(), this.props.location.query.sortBy);
+        console.log("Movies render", this.props.movies.toJS(), this.props.location.query.sortBy);
         let leftNavItems = [
             //{label: "Latest", value: "latest"},
             {label: "Now playing", value: "now_playing"},
@@ -39,7 +46,7 @@ class Movies extends React.Component {
         ];
 
         let selectedItem = 'now_playing';
-        if (this.props.location && this.props.location.query)
+        if (this.props.location && this.props.location.query && this.props.location.query.sortBy)
             selectedItem = this.props.location.query.sortBy;
 
         return <div className="two-column-wrapper">
@@ -49,7 +56,8 @@ class Movies extends React.Component {
                      selectedItem={selectedItem}/>
             {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
             <ItemsGrid className="items-grid"
-                       items={this.props.movies.get(selectedItem)}>
+                       items={this.props.movies.get(selectedItem)}
+                        onItemClick={this.loadMovieDetail}>
             </ItemsGrid>
         </div>
     }
@@ -63,7 +71,6 @@ function mapStateToProps(state) {
     //console.log("Movies mapStateToProps", state);
     return {movies: state.data.get('movies'), location: state.routing.location};
 }
-
 
 export default connect(
     mapStateToProps,

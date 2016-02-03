@@ -20,9 +20,7 @@ const reducer = combineReducers(Object.assign({}, {data: rootReducer}, {
 const finalCreateStore = compose(
     applyMiddleware(middleware, thunkMiddleware),
     DevTools.instrument()
-
 )(createStore);
 
 export const store = finalCreateStore(reducer);
-console.log("store", store);
 middleware.listenForReplays(store);

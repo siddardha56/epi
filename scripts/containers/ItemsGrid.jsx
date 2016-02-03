@@ -27,8 +27,6 @@ export default class ItemsGrid extends React.Component {
     }
 
     render() {
-        //console.log("ItemsGrid.props", this.props);
-
         let items = this.props.items.get('results') || [];
         const tileElements = items.map(item => {
             let posterURL = (item.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + item.get('poster_path') : '');
@@ -36,9 +34,11 @@ export default class ItemsGrid extends React.Component {
             return <GridTile
                 key={item.get('id')}
                 actionIcon={<IconButton></IconButton>}
-                style={{width: "187px", marginTop: "25px", paddingLeft: "15x"}}>
+                style={{width: "187px", marginTop: "25px", paddingLeft: "15x"}}
+                >
                 <Card style={{width: '187px', height: '280px'}}
                       ref={item.get('id')}
+                      onClick={this.props.onItemClick}
                       zDepth={this.state.onHoverItemId === item.get('id') ? 3 :1}
                       onMouseEnter={()=>(this.onCardMouseEnter(item.get('id')))}
                       onMouseLeave={()=>(this.onCardMouseLeave(item.get('id')))}>
