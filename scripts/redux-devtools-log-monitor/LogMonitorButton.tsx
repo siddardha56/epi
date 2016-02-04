@@ -1,5 +1,5 @@
 import React from 'react';
-import brighten from './brighten';
+import brighten from './brighten.ts';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 const styles = {

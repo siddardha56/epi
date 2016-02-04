@@ -1,9 +1,13 @@
 "use strict";
+/// <reference path="../typings/react/react.d.ts" />
+/// <reference path="../typings/react/react-dom.d.ts" />
+/// <reference path="../typings/react-redux/react-redux.d.ts" />
+/// <reference path="../typings/material-ui/material-ui.d.ts" />
 
 import '../styles/main.scss';
 
 //React
-import React from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router'
@@ -12,16 +16,14 @@ import { Router, Route, IndexRoute } from 'react-router'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 //components
-import App from './containers/App.jsx';
-import Movies from './containers/pages/Movies.jsx';
-import MovieDetail from './containers/pages/MovieDetail.jsx';
-import TV from './containers/pages/TV.jsx';
-import PageNotFound from './containers/pages/PageNotFound.jsx';
+import App from './containers/App.tsx';
+import Movies from './containers/pages/Movies.tsx';
+import MovieDetail from './containers/pages/MovieDetail.tsx';
+import TV from './containers/pages/TV.tsx';
+import PageNotFound from './containers/pages/PageNotFound.tsx';
 
-import {DevTools} from './DevTools.js';
-import {store} from './createStore';
-import {history} from './createStore';
-import Tracer from './Tracer.jsx';
+import {DevTools} from './DevTools.tsx';
+import {store, history} from './createStore.ts';
 
 injectTapEventPlugin();
 
@@ -41,7 +43,6 @@ render(
                     <Route path="*" component={PageNotFound}/>
                 </Router>
                 <DevTools/>
-                <Tracer/>
             </div>
         </Provider>
     </div>,

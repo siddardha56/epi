@@ -1,10 +1,10 @@
 import React from 'react';
-import ItemsGrid from '../ItemsGrid.jsx';
-import LeftNav from '../LeftNav.jsx';
+import ItemsGrid from '../ItemsGrid.tsx';
+import LeftNav from '../LeftNav.tsx';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
-import Loader from '../../components/Loader.jsx';
-import {getTV} from '../../actions/themoviedb';
+import Loader from '../../components/Loader.tsx';
+import {getTV} from '../../actions/themoviedb.ts';
 
 
 export default class TV extends React.Component {

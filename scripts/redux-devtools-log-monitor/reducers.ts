@@ -1,4 +1,4 @@
-import { UPDATE_SCROLL_TOP } from './actions';
+import { UPDATE_SCROLL_TOP } from './actions.ts';
 
 function initialScrollTop(props, state = 0, action) {
   if (!props.preserveScrollTop) {

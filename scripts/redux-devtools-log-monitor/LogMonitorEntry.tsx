@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import JSONTree from 'react-json-tree';
-import LogMonitorEntryAction from './LogMonitorEntryAction.jsx';
+import LogMonitorEntryAction from './LogMonitorEntryAction.tsx';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 const styles = {

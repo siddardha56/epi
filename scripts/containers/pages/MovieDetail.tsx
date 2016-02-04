@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
-import Loader from '../../components/Loader.jsx';
+import Loader from '../../components/Loader.tsx';
 
 class MovieDetail extends React.Component {
 

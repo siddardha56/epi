@@ -7,7 +7,6 @@ import Card from 'material-ui/lib/card/card';
 import CardText from 'material-ui/lib/card/card-text';
 import ReactDOM from 'react-dom';
 
-
 export default class ItemsGrid extends React.Component {
 
     constructor(props, context) {
