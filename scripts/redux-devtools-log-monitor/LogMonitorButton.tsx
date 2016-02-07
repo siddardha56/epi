@@ -67,33 +67,47 @@ export default class LogMonitorButton extends React.Component {
 
 
         let style;
-        style = Object.assign({}, styles.base);
 
         if (this.props.theme.scheme === "pipboy") {
 
-            style.color = this.props.theme.base00;
-            style.backgroundColor = this.props.theme.base06;
-            style.orderRadius = 'none';
-
+            style = {
+                ...styles.base,
+                color: this.props.theme.base00,
+                backgroundColor: this.props.theme.base06,
+                borderRadius: 'none'
+            };
 
             if (!this.props.enabled) {
-                style.cursor = 'auto';
-                style.backgroundColor = this.props.theme.base02;
+                style = {
+                    ...style,
+                    cursor: 'auto',
+                    backgroundColor: this.props.theme.base02
+                };
+
             }
         }
 
         else {
-            style.backgroundColor = this.props.theme.base02;
+            style = {
+                ...styles.base,
+                backgroundColor: this.props.theme.base02
+            };
 
             if (this.props.enabled && this.state.hovered) {
-                style.backgroundColor = brighten(this.props.theme.base02, 0.2)
+                style = {
+                    ...style,
+                    backgroundColor: brighten(this.props.theme.base02, 0.2)
+                };
+            }
+            if (!this.props.enabled) {
+                style = {
+                    ...style,
+                    opacity: 0.2,
+                    cursor: 'text',
+                    backgroundColor: 'transparent'
+                };
             }
 
-            if (!this.props.enabled) {
-                style.opacity = 0.2;
-                style.cursor = 'text';
-                style.backgroundColor = 'transparent';
-            }
         }
 
         return (

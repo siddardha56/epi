@@ -4,6 +4,8 @@ import * as actionTypes from '../constants/action-types.ts';
 
 export function getMovies(sortBy, lastUpdated = 0) {
     console.log("get Movies");
+    let a = {x: 5};
+    let b = {...a};
     return dispatch => {
         if ((new Date()).getTime() - lastUpdated > 300000) {//if data is older than 5 mins
             dispatch(setMoviesState(true));

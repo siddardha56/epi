@@ -1,5 +1,3 @@
-/// <reference path="../../typings/redux-devtools-log-monitor/redux-devtools-log-monitor.d.ts" />
-
 import React, { PropTypes, Component } from 'react';
 import LogMonitorEntry from './LogMonitorEntry.tsx';
 import LogMonitorButton from './LogMonitorButton.tsx';
@@ -105,7 +103,6 @@ export default class LogMonitor extends Component {
         this.handleCommit = this.handleCommit.bind(this);
         this.copyTrace = this.copyTrace.bind(this);
         this.applyTrace = this.applyTrace.bind(this);
-        this.updateScrollTop = this.updateScrollTop.bind(this);
     }
 
     componentDidMount() {
@@ -116,7 +113,7 @@ export default class LogMonitor extends Component {
 
         if (this.props.preserveScrollTop) {
             node.scrollTop = this.props.monitorState.initialScrollTop;
-            this.interval = setInterval(this.updateScrollTop, 1000);
+            this.interval = setInterval(::this.updateScrollTop, 1000);
         }
     }
 
@@ -257,16 +254,10 @@ export default class LogMonitor extends Component {
             );
         }
 
-        let containerStyle = Object.assign({}, styles.container);
-        containerStyle.backgroundColor = theme.base00;
-
-        let buttonBarStyle = Object.assign({}, styles.buttonBar);
-        buttonBarStyle.borderColor = theme.base02;
-
         return (
             <div className={theme.scheme === 'pipboy'? 'container': ''}
-                 style={containerStyle}>
-                <div style={buttonBarStyle}>
+                 style={{...styles.container, backgroundColor: theme.base00}}>
+                <div style={{...styles.buttonBar, borderColor: theme.base02}}>
                     <LogMonitorButton
                         theme={theme}
                         onClick={this.copyTrace}
@@ -281,10 +272,9 @@ export default class LogMonitor extends Component {
                     </LogMonitorButton>
                 </div>
                 <div style={{borderColor: theme.base02}}>
-                    <textarea className="input" ref="textAreaValue" style={styles.textAreaDebug}>
-                    </textarea>
+                    <textarea className="input" ref="textAreaValue" style={{...styles.textAreaDebug}}></textarea>
                 </div>
-                <div style={buttonBarStyle}>
+                <div style={{...styles.buttonBar, borderColor: theme.base02}}>
                     <LogMonitorButton
                         theme={theme}
                         onClick={this.handleReset}
