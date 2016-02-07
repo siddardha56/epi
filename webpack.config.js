@@ -6,7 +6,7 @@ module.exports = {
     entry: [
         'webpack-dev-server/client?http://localhost:5020',
         'webpack/hot/only-dev-server',
-        './scripts/index.tsx'
+        './scripts/index.jsx'
     ],
     output: {
         path: path.join(__dirname, 'dist'),
@@ -23,13 +23,13 @@ module.exports = {
                 loader: 'style!css!sass'
             },
             {
-                test: /\.ts(x?)$/,
-                exclude: ['node_modules', 'tests'],
+                test: /\.js(x?)$/,
+                exclude: /node_modules/,
                 loader: 'react-hot'
             },
             {
-                test: /\.ts(x?)$/,
-                exclude: ['node_modules', 'tests'],
+                test: /\.js(x?)$/,
+                exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015', 'react', 'stage-0']

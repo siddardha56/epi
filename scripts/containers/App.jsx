@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { connect, dispatch } from 'react-redux';
-import Actions from '../actions/themoviedb.ts';
-import Theme from '../theme.ts';
+import Actions from '../actions/themoviedb';
+import Theme from '../theme';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 
 //Components
@@ -17,7 +17,7 @@ import * as Immutable from 'immutable';
 import FontIcon from 'material-ui/lib/font-icon';
 
 import { routeActions } from 'react-router-redux';
-import CategoryTabs from './CategoryTabs.tsx';
+import CategoryTabs from './CategoryTabs.jsx';
 
 
 //CSS

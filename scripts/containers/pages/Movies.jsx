@@ -1,10 +1,10 @@
 import React from 'react';
-import ItemsGrid from '../ItemsGrid.tsx';
-import LeftNav from '../LeftNav.tsx';
+import ItemsGrid from '../ItemsGrid.jsx';
+import LeftNav from '../LeftNav.jsx';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
-import Loader from '../../components/Loader.tsx';
-import {getMovies} from '../../actions/themoviedb.ts';
+import Loader from '../../components/Loader.jsx';
+import {getMovies} from '../../actions/themoviedb';
 
 
 class Movies extends React.Component {
