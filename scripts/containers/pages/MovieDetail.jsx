@@ -2,6 +2,10 @@ import React from 'react';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import Loader from '../../components/Loader.jsx';
+import * as Actions from '../../actions/themoviedb.js';
+import {getBackdropURL} from '../../utils/urls.js';
+
+const {getMovieDetail} = Actions;
 
 class MovieDetail extends React.Component {
 
@@ -12,16 +16,15 @@ class MovieDetail extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Movies mount");
-        let sortBy = this.props.location.query.sortBy || 'now_playing';
-        this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
+        console.log("MovieDetail mount", this.props);
+        this.props.dispatch(getMovieDetail(this.props.routeParams.id));
     }
 
     render() {
-        console.log("MovieDetail render", this.props, this.props.location.query.sortBy);
+        console.log("MovieDetail render", this.props);
 
         return <div className="">
-           Movie Detail
+            <img src={getBackdropURL({fileName: this.props.movie.get('backdrop_path')})}/>
         </div>
     }
 }
@@ -32,7 +35,11 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     //console.log("Movies mapStateToProps", state);
-    return {movies: state.data.get('movies'), location: state.routing.location};
+    return {movie: state.data.getIn(['movies', 'detail']), location: state.routing.location};
 }
 
-export default MovieDetail;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+(MovieDetail);

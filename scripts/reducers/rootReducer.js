@@ -8,6 +8,7 @@ const initialState = Immutable.fromJS({
         "now_playing": {page: 0, total_pages: 0, total_results: 0, results: [], lastUpdated: 0},
         "top_rated": {page: 0, total_pages: 0, total_results: 0, results: [], lastUpdated: 0},
         upcoming: {page: 0, total_pages: 0, total_results: 0, results: [], lastUpdated: 0},
+        detail: {},
         state: {
             isLoading: false
         }
@@ -37,8 +38,10 @@ export function rootReducer(state = initialState, action) {
         case actionTypes.SET_MOVIES_POPULAR:
         case actionTypes.SET_MOVIES_TOP_RATED:
         case actionTypes.SET_MOVIES_UPCOMING:
-            //console.log("state", state.getIn(['movies', action.sortBy]).toJS());
             return state.updateIn(['movies', action.sortBy], (category) => (Immutable.fromJS(action.movies)));
+
+        case actionTypes.SET_MOVIE_DETAIL:
+            return state.updateIn(['movies', 'detail'], (detail) => (Immutable.fromJS(action.movieDetail)));
 
         case actionTypes.TV_IS_LOADING:
             return state.setIn(['tv', 'state', 'isLoading'], action.isLoading);
@@ -47,7 +50,6 @@ export function rootReducer(state = initialState, action) {
         case actionTypes.SET_TV_AIRING_TODAY:
         case actionTypes.SET_TV_TOP_RATED:
         case actionTypes.SET_TV_POPULAR:
-            //console.log("state", state.getIn(['tv', action.sortBy]).toJS());
             return state.updateIn(['tv', action.sortBy], (category) => (Immutable.fromJS(action.tv)));
 
         default:

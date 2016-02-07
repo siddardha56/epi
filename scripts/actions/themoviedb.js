@@ -53,6 +53,33 @@ function setMovies(json, sortBy) {
     };
 }
 
+export function getMovieDetail(id){
+    console.log("get MovieDetail");
+    return dispatch => {
+            dispatch(setMoviesState(true));
+            return fetchJsonp(`http://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`, {
+                data: 'api_key=8d2ab485b0a9df7358ff91bd52a180fe',
+                page: 1
+            })
+                .then(response => response.json())
+                .then((json) => {
+                    dispatch(setMoviesState(false));
+                    return dispatch(setMovieDetail(json));
+                })
+                .catch(err => {
+                    //return dispatch(failedToGetMovies(json, sortBy));
+                    throw err;
+                });
+    };
+}
+
+function setMovieDetail(movieDetail){
+    return {
+        type: actionTypes.SET_MOVIE_DETAIL,
+        movieDetail
+    };
+}
+
 function setMoviesState(isLoading) {
     return {
         type: actionTypes.MOVIES_IS_LOADING,

@@ -22,10 +22,10 @@ class Movies extends React.Component {
         this.props.dispatch(getMovies(sortBy, this.props.movies.getIn([sortBy, 'lastUpdated'])));
     }
 
-    loadMovieDetail(){
-        console.log("loadMovieDetail");
+    loadMovieDetail(movieId) {
+        console.log("loadMovieDetail", movieId);
 
-        this.props.dispatch(routeActions.push("/movie/1"));
+        this.props.dispatch(routeActions.push(`/movie/${movieId}`));
     }
 
     loadPage(route) {
@@ -57,7 +57,7 @@ class Movies extends React.Component {
             {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
             <ItemsGrid className="items-grid"
                        items={this.props.movies.get(selectedItem)}
-                        onItemClick={this.loadMovieDetail}>
+                       onItemClick={this.loadMovieDetail}>
             </ItemsGrid>
         </div>
     }

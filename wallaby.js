@@ -5,9 +5,9 @@ module.exports = function () {
             //    "pattern": "node_modules/chai/lib/chai.js",
             //    "instrument": "false"
             //},
-            "scripts/*.js",
-            "scripts/**/*.js",
-            "scripts/**/**/*.js",
+            "scripts/utils/*.js",
+            "scripts/actions/*.js",
+            "scripts/constants/*.js"
         ],
         "tests": [
             "tests/*.test.js"

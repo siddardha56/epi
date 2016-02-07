@@ -1,0 +1,1 @@
+export const baseURL = "http://api.themoviedb.org/3";
