@@ -1,13 +1,30 @@
 import React from 'react';
+import './tabs.scss';
 
-class Tabs extends React.Component {
+export default class Tabs extends React.Component {
 
-  constructor(props, context){
-    super(props, context);
-  }
+    constructor(props, context) {
+        super(props, context);
+    }
 
-  render(){
-    return <div></div>;
-  }
+    render() {
+        return <div className="tabs">
+            <ul>
+                <li className="tab-item">
+                    <a href="#">Now playing</a>
+                </li>
+                <li className="tab-item">
+                    <a href="#">Popular</a>
+                </li>
+                <li className="tab-item">
+                    <a href="#">Upcoming</a>
+                </li>
+                <li className="tab-item">
+                    <a href="#">Top Rated</a>
+                </li>
+
+            </ul>
+        </div>;
+    }
 }
 

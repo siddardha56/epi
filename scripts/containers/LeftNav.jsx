@@ -4,6 +4,7 @@ import ListItem from 'material-ui/lib/lists/list-item';
 import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
 let SelectableList = SelectableContainerEnhance(List);
 import Divider from 'material-ui/lib/divider';
+import './left-nav.scss';
 
 export default class LeftNav extends React.Component {
     constructor(props, context) {
@@ -20,23 +21,13 @@ export default class LeftNav extends React.Component {
     render() {
         console.log("LeftNav props", this.props);
 
-        return <div style={{width: "20%", float: "left"}}>
-            <SelectableList
-                valueLink={{value: this.props.selectedItem, requestChange: this.handleUpdateSelectedItem}}>
-
+        //TODO selected item highlight
+        return <div className="left-nav">
+            <ul>
                 {this.props.items.map(item => {
-                    return <ListItem primaryText={item.label}
-                                     value={item.value}
-                                     key={item.value}
-                                     onTouchTap={()=>(this.props.onItemClick(item.value))}/>;
+                    return <li key={item.value} onClick={()=>(this.props.onItemClick(item.value))}>{item.label}</li>
                 })}
-                <Divider/>
-                <ListItem primaryText="Watchlist"
-                          value="watchlist"/>
-                <ListItem primaryText="Watched"
-                          value="watched"/>
-
-            </SelectableList>
+            </ul>
         </div>;
     }
 

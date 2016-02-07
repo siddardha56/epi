@@ -6,6 +6,7 @@ import IconButton from 'material-ui/lib/icon-button';
 import Card from 'material-ui/lib/card/card';
 import CardText from 'material-ui/lib/card/card-text';
 import ReactDOM from 'react-dom';
+import './pages/page.scss';
 import './items-grid.scss';
 
 
@@ -30,14 +31,12 @@ export default class ItemsGrid extends React.Component {
     render() {
         let items = this.props.items.get('results') || [];
 
-        return <div>
-            <h1>Movies</h1>
-
+        return <div className="right">
             <div className="row">
                 {items.map(item => {
                     let posterURL = (item.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + item.get('poster_path') : '');
 
-                    return <div className="col-1-4">
+                    return <div className="col-1-4" key={item.get('id')} onClick={()=>(this.props.onItemClick(item.get('id')))}>
                         <div>
                             <img className="grid-item-image" src={posterURL} style={{width: '187px', height: '280px'}}/>
                         </div>

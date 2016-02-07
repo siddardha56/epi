@@ -12,11 +12,12 @@ export default class Nav extends React.Component {
             <div className="inner">
                 <nav>
                     <a href="#" className="logo">Epi</a>
-                    <input type="checkbox" id="nav" /><label for="nav"></label>
+                    <input type="checkbox" id="nav" />
+                    <label htmlFor="nav"></label>
                     <ul>
-                        <li><a href="#">Movies</a></li>
+                        <li><a href="/movies?sortBy=popular">Movies</a></li>
                         <li>
-                            <a href="#">TV</a>
+                            <a href="/tv?sortBy=popular">TV</a>
                         </li>
                     </ul>
                 </nav>

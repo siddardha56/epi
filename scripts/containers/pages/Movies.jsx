@@ -4,8 +4,9 @@ import LeftNav from '../LeftNav.jsx';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import Loader from '../../components/Loader.jsx';
+import Tabs from '../../components/tabs/Tabs.jsx';
 import {getMovies} from '../../actions/themoviedb';
-
+import './page.scss';
 
 class Movies extends React.Component {
 
@@ -49,14 +50,14 @@ class Movies extends React.Component {
         if (this.props.location && this.props.location.query && this.props.location.query.sortBy)
             selectedItem = this.props.location.query.sortBy;
 
-        return <div>
+        return <div className="two-column">
             {/*<LeftNav className="left-nav"
-                     items={leftNavItems}
-                     onItemClick={this.loadPage}
-                     selectedItem={selectedItem}/>*/}
+             items={leftNavItems}
+             onItemClick={this.loadPage}
+             selectedItem={selectedItem}/>*/}
+            <LeftNav items={leftNavItems} onItemClick={this.loadPage}/>
             {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
-            <ItemsGrid className="items-grid"
-                       items={this.props.movies.get(selectedItem)}
+            <ItemsGrid items={this.props.movies.get(selectedItem)}
                        onItemClick={this.loadMovieDetail}>
             </ItemsGrid>
         </div>
