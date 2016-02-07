@@ -6,7 +6,7 @@ import IconButton from 'material-ui/lib/icon-button';
 import Card from 'material-ui/lib/card/card';
 import CardText from 'material-ui/lib/card/card-text';
 import ReactDOM from 'react-dom';
-import '../../styles/ItemsGrid.scss';
+import './items-grid.scss';
 
 
 export default class ItemsGrid extends React.Component {
@@ -28,43 +28,23 @@ export default class ItemsGrid extends React.Component {
     }
 
     render() {
-        let cardStyle = {width: '187px', height: '280px', boxShadow: "0 4px 10px rgba(0,0,0,0.4)"};
-        let onHoverCardStyle = {width: '187px', height: '280px',boxShadow: "0 2px 5px rgba(0,0,0,0.4)"};
         let items = this.props.items.get('results') || [];
 
-        const tileElements = items.map(item => {
-            let posterURL = (item.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + item.get('poster_path') : '');
+        return <div>
+            <h1>Movies</h1>
 
-            return <GridTile
-                key={item.get('id')}
-                actionIcon={<IconButton></IconButton>}
-                style={{width: "187px", marginTop: "25px", paddingLeft: "15x"}}
-                >
-                <div className="grid-item-card"
-                      ref={item.get('id')}
-                      onClick={() => (this.props.onItemClick(item.get('id')))}
-                      onMouseEnter={()=>(this.onCardMouseEnter(item.get('id')))}
-                      onMouseLeave={()=>(this.onCardMouseLeave(item.get('id')))}>
-                    <img src={posterURL} style={{width: '187px', height: '280px'}}/>
-                </div>
-                <CardText style={{textAlign:"center"}}>
-                    {item.get('title')||item.get('name')}
-                </CardText>
-            </GridTile>
-        });
+            <div className="row">
+                {items.map(item => {
+                    let posterURL = (item.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + item.get('poster_path') : '');
 
-        const gridListStyle = {width: '100%', height: '700px', overflowY: 'auto'};
-
-        return <div style={{width: "75%", display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-            {/* Basic grid list with mostly default options */}
-            <GridList
-                cols={4}
-                padding={15}
-                cellHeight={350}
-                style={gridListStyle}>
-                {tileElements}
-            </GridList>
+                    return <div className="col-1-4">
+                        <div>
+                            <img className="grid-item-image" src={posterURL} style={{width: '187px', height: '280px'}}/>
+                        </div>
+                        <div className="grid-item-text">{item.get('title') || item.get('name')}</div>
+                    </div>
+                })}
+            </div>
         </div>;
-
     }
 }

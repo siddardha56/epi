@@ -49,11 +49,11 @@ class Movies extends React.Component {
         if (this.props.location && this.props.location.query && this.props.location.query.sortBy)
             selectedItem = this.props.location.query.sortBy;
 
-        return <div className="two-column-wrapper">
-            <LeftNav className="left-nav"
+        return <div>
+            {/*<LeftNav className="left-nav"
                      items={leftNavItems}
                      onItemClick={this.loadPage}
-                     selectedItem={selectedItem}/>
+                     selectedItem={selectedItem}/>*/}
             {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
             <ItemsGrid className="items-grid"
                        items={this.props.movies.get(selectedItem)}

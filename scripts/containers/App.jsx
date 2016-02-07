@@ -17,7 +17,7 @@ import * as Immutable from 'immutable';
 import FontIcon from 'material-ui/lib/font-icon';
 
 import { routeActions } from 'react-router-redux';
-import CategoryTabs from './CategoryTabs.jsx';
+import Header from '../components/header/Header.jsx';
 
 
 //CSS
@@ -67,25 +67,27 @@ class App extends React.Component {
 
         return <div>
 
-            <AppBar
-                title="Epi"
-                zDepth={0}
-                showMenuIconButton={false}
-                onTitleTouchTap={this.onTitleTouchTap}
-                style={styles.appBar}
-                iconElementRight={
-                    <a href="http://www.github.com/arjunu/epi">
-                        <IconButton
-                            iconClassName="mdi mdi-github-circle"
-                            tooltip="View source"
-                            onTouchTap={this.onAppBarRightIconClick}
-                            tooltipPosition="bottom-left">
-                        </IconButton></a>}>
+            {/*<AppBar
+             title="Epi"
+             zDepth={0}
+             showMenuIconButton={false}
+             onTitleTouchTap={this.onTitleTouchTap}
+             style={styles.appBar}
+             iconElementRight={
+             <a href="http://www.github.com/arjunu/epi">
+             <IconButton
+             iconClassName="mdi mdi-github-circle"
+             tooltip="View source"
+             onTouchTap={this.onAppBarRightIconClick}
+             tooltipPosition="bottom-left">
+             </IconButton></a>}>
 
-                <CategoryTabs/>
-            </AppBar>
-
-            {this.props.children}
+             <CategoryTabs/>
+             </AppBar>*/}
+            <Header></Header>
+            <div className="content-wrapper">
+                {this.props.children}
+            </div>
         </div>
     }
 }
