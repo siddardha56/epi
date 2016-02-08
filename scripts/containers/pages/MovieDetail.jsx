@@ -4,6 +4,7 @@ import { routeActions } from 'react-router-redux';
 import Loader from '../../components/Loader.jsx';
 import * as Actions from '../../actions/themoviedb.js';
 import {getBackdropURL} from '../../utils/urls.js';
+import './movie-detail.scss';
 
 const {getMovieDetail} = Actions;
 
@@ -21,10 +22,24 @@ class MovieDetail extends React.Component {
     }
 
     render() {
-        console.log("MovieDetail render", this.props);
+        let movie = this.props.movie;
+        console.log("MovieDetail render", this.props.movie.toJS());
+        let posterURL = (movie.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + movie.get('poster_path') : '');
 
-        return <div className="">
-            <img src={getBackdropURL({fileName: this.props.movie.get('backdrop_path')})}/>
+        return <div className="backdrop"
+                    style={{backgroundImage: `url(${getBackdropURL({fileName: this.props.movie.get('backdrop_path')})})`,
+        backgroundSize: 'cover'}}>
+            <div className="overlay"></div>
+            <div className="detail">
+                <img className="poster" src={posterURL} style={{width: '187px', height: '280px'}}/>
+
+                <div className="title">{this.props.movie.get('title')}</div>
+
+                <div>{this.props.movie.get('tagline')}</div>
+                <div className="overview">{this.props.movie.get('overview')}</div>
+
+            </div>
+
         </div>
     }
 }
