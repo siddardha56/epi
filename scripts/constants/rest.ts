@@ -1,1 +1,1 @@
-export const baseURL = "http://api.themoviedb.org/3";
+export const baseURL:string = "http://api.themoviedb.org/3";

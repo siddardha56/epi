@@ -1,7 +1,13 @@
 import * as React from 'react';
 import './left-nav.scss';
 
-export default class LeftNav extends React.Component {
+interface LeftNavProps {
+    onItemClick: Function
+}
+
+interface LeftNavState {}
+
+export default class LeftNav extends React.Component<LeftNavProps, LeftNavState> {
     constructor(props, context) {
         super(props, context);
 

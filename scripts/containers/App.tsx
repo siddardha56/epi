@@ -11,40 +11,27 @@ import Header from '../components/header/Header.tsx';
 //CSS
 import "../../styles/app.scss";
 
-class App extends React.Component {
+interface AppProps {
+    dispatch: Redux.Dispatch,
+    children: React.ReactChild
+}
+
+interface AppState {
+
+}
+
+class App extends React.Component<AppProps, AppState> {
     constructor(props, context) {
         super(props, context);
-        this.onTitleTouchTap = this.onTitleTouchTap.bind(this);
-        this.onAppBarRightIconClick = this.onAppBarRightIconClick.bind(this);
-
-        //console.log("App constructor", this, props, context);
-        this.state = {leftNavOpen: false};
-    }
-
-    onTitleTouchTap() {
-        this.props.push("/movies");
     }
 
     getPageData(route, index) {
         console.log("getPageData", this.props, route);
         return this.props.data.movies;
-
-    }
-
-    onAppBarRightIconClick() {
-        console.log("asd")
     }
 
     render() {
         console.log("App render", this);
-
-        let thisComponent = this;
-
-        const styles = {
-            appBar: {
-                flexWrap: 'wrap',
-            }
-        };
 
         return <div>
 
@@ -72,11 +59,6 @@ class App extends React.Component {
         </div>
     }
 }
-
-
-App.propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
-};
 
 //function mapStateToProps(state) {
 //    console.log("mapStateToProps", state.data.toJS());

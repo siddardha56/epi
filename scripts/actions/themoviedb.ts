@@ -2,7 +2,7 @@ import fetchJsonp from 'fetch-jsonp';
 import {API_KEY} from '../constants/api-key.ts';
 import * as actionTypes from '../constants/action-types.ts';
 
-export function getMovies(sortBy, lastUpdated = 0) {
+export function getMovies(sortBy:string, lastUpdated:number = 0) {
     console.log("get Movies");
     return dispatch => {
         if ((new Date()).getTime() - lastUpdated > 300000) {//if data is older than 5 mins
@@ -26,7 +26,7 @@ export function getMovies(sortBy, lastUpdated = 0) {
     };
 }
 
-function setMovies(json, sortBy) {
+function setMovies(json, sortBy:string) {
     let actionType = "";
     switch (sortBy) {
         case "popular":
@@ -53,7 +53,7 @@ function setMovies(json, sortBy) {
     };
 }
 
-export function getMovieDetail(id){
+export function getMovieDetail(id:number){
     console.log("get MovieDetail");
     return dispatch => {
             dispatch(setMoviesState(true));

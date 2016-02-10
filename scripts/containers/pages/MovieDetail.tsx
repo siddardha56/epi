@@ -7,7 +7,15 @@ import './movie-detail.scss';
 
 const {getMovieDetail} = Actions;
 
-class MovieDetail extends React.Component {
+interface MovieDetailProps {
+    dispatch:Function
+}
+
+interface MovieDetailState {
+
+}
+
+class MovieDetail extends React.Component<MovieDetailProps, MovieDetailState> {
 
     constructor(props, context) {
         super(props, context);
@@ -48,7 +56,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    //console.log("Movies mapStateToProps", state);
     return {movie: state.data.getIn(['movies', 'detail']), location: state.routing.location};
 }
 

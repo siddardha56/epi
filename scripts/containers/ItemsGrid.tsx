@@ -3,8 +3,15 @@ import * as ReactDOM from 'react-dom';
 import './pages/page.scss';
 import './items-grid.scss';
 
+interface ItemsGridProps {
+    onItemClick: Function
+}
 
-export default class ItemsGrid extends React.Component {
+interface ItemsGridState {
+    onHoverItemId: number
+}
+
+export default class ItemsGrid extends React.Component<ItemsGridProps, ItemsGridState> {
 
     constructor(props, context) {
         super(props, context);
@@ -30,13 +37,14 @@ export default class ItemsGrid extends React.Component {
                 {items.map(item => {
                     let posterURL = (item.get('poster_path') ? 'http://image.tmdb.org/t/p/w300' + item.get('poster_path') : '');
 
-                    return <div className="col-1-4" key={item.get('id')} onClick={()=>(this.props.onItemClick(item.get('id')))}>
+                    return <div className="col-1-4" key={item.get('id')}
+                                onClick={()=>(this.props.onItemClick(item.get('id')))}>
                         <div>
                             <img className="grid-item-image" src={posterURL} style={{width: '187px', height: '280px'}}/>
                         </div>
                         <div className="grid-item-text">{item.get('title') || item.get('name')}</div>
                     </div>
-                })}
+                    })}
             </div>
         </div>;
     }

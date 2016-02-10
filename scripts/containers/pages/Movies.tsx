@@ -1,12 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 import ItemsGrid from '../ItemsGrid.tsx';
 import LeftNav from '../LeftNav.tsx';
-import { connect, dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import {getMovies} from '../../actions/themoviedb.ts';
 import './page.scss';
 
-class Movies extends React.Component {
+interface MovieProps{
+    dispatch: Redux.Dispatch,
+    location: HistoryModule.Location
+}
+
+interface MovieState{}
+
+class Movies extends React.Component<MovieProps, MovieState> {
 
     constructor(props, context) {
         super(props, context);

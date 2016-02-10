@@ -1,12 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import ItemsGrid from '../ItemsGrid.tsx';
 import LeftNav from '../LeftNav.tsx';
-import { connect, dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import {getTV} from '../../actions/themoviedb.ts';
 
+interface TVProps{
+    dispatch: Redux.Dispatch,
+    location: HistoryModule.Location
+}
 
-export default class TV extends React.Component {
+interface TVState{}
+
+class TV extends React.Component<TVProps, TVState> {
     constructor(props, context) {
         super(props, context);
 
@@ -14,7 +20,6 @@ export default class TV extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Tv mounted")
         let sortBy = this.props.location.query.sortBy || 'on_the_air';
         this.props.dispatch(getTV(sortBy, this.props.tv.getIn([sortBy, 'lastUpdated'])));
     }

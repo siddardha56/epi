@@ -1,6 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 
-export default class PageNotFound extends React.Component {
+interface PageNotFoundProps {}
+
+interface PageNotFoundState {}
+
+export default class PageNotFound extends React.Component<PageNotFoundProps, PageNotFoundState> {
     constructor(props, context) {
         super(props, context);
     }
