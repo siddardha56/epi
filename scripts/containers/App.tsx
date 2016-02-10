@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect, dispatch } from 'react-redux';
-import Actions from '../actions/themoviedb.ts';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import * as Actions from '../actions/themoviedb.ts';
 
 import * as Immutable from 'immutable';
 

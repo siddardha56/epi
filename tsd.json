@@ -6,7 +6,7 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "react/react.d.ts": {
-      "commit": "31c4d1e533cd47fbf8300cc0b36c0d7d96cb2984"
+      "commit": "1a5b2a729d35b1d41e2d15818db013a3644c6ba4"
     },
     "react-redux/react-redux.d.ts": {
       "commit": "12b6445d85d19a7f04f8550226ac118720520933"
@@ -34,6 +34,9 @@
     },
     "react/react-dom.d.ts": {
       "commit": "31c4d1e533cd47fbf8300cc0b36c0d7d96cb2984"
+    },
+    "redux-devtools-dock-monitor/redux-devtools-dock-monitor.d.ts": {
+      "commit": "1a5b2a729d35b1d41e2d15818db013a3644c6ba4"
     }
   }
 }

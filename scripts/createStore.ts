@@ -7,7 +7,7 @@ import {
     syncHistory, routeReducer
 } from 'react-router-redux';
 import { createHistory } from 'history'
-import {rootReducer} from './reducers/rootReducer';
+import {rootReducer} from './reducers/rootReducer.ts';
 import {DevTools} from './DevTools.tsx';
 
 export const history = createHistory();

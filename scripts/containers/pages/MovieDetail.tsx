@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect, dispatch } from 'react-redux';
+import * as React from 'react';
+import { connect } from 'react-redux';
 import { routeActions } from 'react-router-redux';
 import * as Actions from '../../actions/themoviedb.ts';
 import {getBackdropURL} from '../../utils/urls.ts';

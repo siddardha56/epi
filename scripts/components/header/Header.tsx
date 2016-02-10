@@ -1,7 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import './header.scss';
 
-export default class Nav extends React.Component {
+interface NavProps {
+
+}
+
+interface NavState{
+
+}
+
+export default class Nav extends React.Component<NavProps, NavState> {
 
     constructor(props, context) {
         super(props, context);

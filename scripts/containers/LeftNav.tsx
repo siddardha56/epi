@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import './left-nav.scss';
 
 export default class LeftNav extends React.Component {
