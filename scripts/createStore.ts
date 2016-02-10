@@ -8,7 +8,7 @@ import {
 } from 'react-router-redux';
 import { createHistory } from 'history'
 import {rootReducer} from './reducers/rootReducer';
-import {DevTools} from './DevTools.js';
+import {DevTools} from './DevTools.tsx';
 
 export const history = createHistory();
 

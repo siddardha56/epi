@@ -1,6 +1,6 @@
 import fetchJsonp from 'fetch-jsonp';
-import {API_KEY} from '../constants/api-key';
-import * as actionTypes from '../constants/action-types';
+import {API_KEY} from '../constants/api-key.ts';
+import * as actionTypes from '../constants/action-types.ts';
 
 export function getMovies(sortBy, lastUpdated = 0) {
     console.log("get Movies");

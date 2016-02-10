@@ -1,5 +1,15 @@
 *node_modules
 *dist
+*typings
+
+scripts/constants/api-key.js
+scripts/constants/api-key.ts
+
+tests/*.js
+scripts/*.js
+scripts/**/*.js
+scripts/**/**/*.js
+*.js.map
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 
@@ -52,4 +62,3 @@ fabric.properties
 
 .idea/vcs.xml
 
-scripts/constants/api-key.js

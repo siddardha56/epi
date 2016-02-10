@@ -1,12 +1,12 @@
 import React, { PropTypes, Component } from 'react';
-import LogMonitorEntry from './LogMonitorEntry.jsx';
-import LogMonitorButton from './LogMonitorButton.jsx';
+import LogMonitorEntry from './LogMonitorEntry.tsx';
+import LogMonitorButton from './LogMonitorButton.tsx';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import * as themes from 'redux-devtools-themes';
-import pipboyColors from './pipboyColors';
+import pipboyColors from './pipboyColors.ts';
 import { ActionCreators } from 'redux-devtools';
-import { updateScrollTop } from './actions';
-import reducer from './reducers';
+import { updateScrollTop } from './actions.ts';
+import reducer from './reducers.ts';
 import ReactDOM from 'react-dom';
 import './style.css';
 //import {store} from '../createStore';

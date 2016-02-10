@@ -1,4 +1,4 @@
-import {baseURL} from '../constants/rest.js';
+import {baseURL} from '../constants/rest.ts';
 
 export function getBackdropURL({ fileName, width = 1280 }) {
     //TODO return placeholder image for undefined file name

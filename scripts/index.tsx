@@ -1,3 +1,5 @@
+/// <reference path="../typings/tsd.d.ts" />
+
 "use strict";
 
 import '../styles/main.scss';
@@ -8,21 +10,16 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router'
 
-//Mui
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
 //components
-import App from './containers/App.jsx';
-import Movies from './containers/pages/Movies.jsx';
-import MovieDetail from './containers/pages/MovieDetail.jsx';
-import TV from './containers/pages/TV.jsx';
-import PageNotFound from './containers/pages/PageNotFound.jsx';
+import App from './containers/App.tsx';
+import Movies from './containers/pages/Movies.tsx';
+import MovieDetail from './containers/pages/MovieDetail.tsx';
+import TV from './containers/pages/TV.tsx';
+import PageNotFound from './containers/pages/PageNotFound.tsx';
 
-import {DevTools} from './DevTools.js';
-import {store} from './createStore';
-import {history} from './createStore';
-
-injectTapEventPlugin();
+import {DevTools} from './DevTools.tsx';
+import {store} from './createStore.ts';
+import {history} from './createStore.ts';
 
 const rootElement = document.getElementById('root');
 

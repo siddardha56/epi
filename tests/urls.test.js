@@ -1,7 +1,7 @@
 import chai from 'chai';
 chai.should();
 
-import {getBackdropURL} from '../scripts/utils/urls.js';
+import {getBackdropURL} from '../scripts/utils/urls.ts';
 
 describe("getBackdropURL", ()=> {
     it("should action object", ()=> {

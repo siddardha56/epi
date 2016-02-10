@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect, dispatch } from 'react-redux';
-import Actions from '../actions/themoviedb';
+import Actions from '../actions/themoviedb.ts';
 
 import * as Immutable from 'immutable';
 
 import { routeActions } from 'react-router-redux';
-import Header from '../components/header/Header.jsx';
+import Header from '../components/header/Header.tsx';
 
 
 //CSS

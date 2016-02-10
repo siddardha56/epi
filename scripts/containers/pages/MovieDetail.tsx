@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
-import * as Actions from '../../actions/themoviedb.js';
-import {getBackdropURL} from '../../utils/urls.js';
+import * as Actions from '../../actions/themoviedb.ts';
+import {getBackdropURL} from '../../utils/urls.ts';
 import './movie-detail.scss';
 
 const {getMovieDetail} = Actions;
