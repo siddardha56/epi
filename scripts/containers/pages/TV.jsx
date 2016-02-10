@@ -3,7 +3,6 @@ import ItemsGrid from '../ItemsGrid.jsx';
 import LeftNav from '../LeftNav.jsx';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
-import Loader from '../../components/Loader.jsx';
 import {getTV} from '../../actions/themoviedb';
 
 
@@ -45,7 +44,7 @@ export default class TV extends React.Component {
                      items={leftNavItems}
                      onItemClick={this.loadPage}
                      selectedItem={selectedItem}/>
-            {this.props.tv.getIn(['state', 'isLoading']) ? <Loader/> : ''}
+            {this.props.tv.getIn(['state', 'isLoading']) ? 'Loader' : ''}
             <ItemsGrid className="items-grid"
                        items={this.props.tv.get(selectedItem)}>
             </ItemsGrid>

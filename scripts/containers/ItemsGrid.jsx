@@ -1,10 +1,4 @@
 import React from 'react';
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
-//import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import IconButton from 'material-ui/lib/icon-button';
-import Card from 'material-ui/lib/card/card';
-import CardText from 'material-ui/lib/card/card-text';
 import ReactDOM from 'react-dom';
 import './pages/page.scss';
 import './items-grid.scss';

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
-import Loader from '../../components/Loader.jsx';
 import * as Actions from '../../actions/themoviedb.js';
 import {getBackdropURL} from '../../utils/urls.js';
 import './movie-detail.scss';

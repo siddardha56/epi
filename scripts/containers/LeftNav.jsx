@@ -1,9 +1,4 @@
 import React from 'react';
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
-import {SelectableContainerEnhance} from 'material-ui/lib/hoc/selectable-enhance';
-let SelectableList = SelectableContainerEnhance(List);
-import Divider from 'material-ui/lib/divider';
 import './left-nav.scss';
 
 export default class LeftNav extends React.Component {

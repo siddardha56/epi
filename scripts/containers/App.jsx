@@ -1,20 +1,8 @@
 import React from 'react';
 import { connect, dispatch } from 'react-redux';
 import Actions from '../actions/themoviedb';
-import Theme from '../theme';
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-
-//Components
-import AppBar from 'material-ui/lib/app-bar';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import IconButton from 'material-ui/lib/icon-button';
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/lib/menus/icon-menu';
-import ListItem from 'material-ui/lib/lists/list-item';
 
 import * as Immutable from 'immutable';
-
-import FontIcon from 'material-ui/lib/font-icon';
 
 import { routeActions } from 'react-router-redux';
 import Header from '../components/header/Header.jsx';
@@ -31,13 +19,6 @@ class App extends React.Component {
 
         //console.log("App constructor", this, props, context);
         this.state = {leftNavOpen: false};
-    }
-
-
-    getChildContext() {
-        return {
-            muiTheme: ThemeManager.getMuiTheme(Theme)
-        }
     }
 
     onTitleTouchTap() {
@@ -92,9 +73,6 @@ class App extends React.Component {
     }
 }
 
-App.childContextTypes = {
-    muiTheme: React.PropTypes.object
-};
 
 App.propTypes = {
     dispatch: React.PropTypes.func.isRequired,

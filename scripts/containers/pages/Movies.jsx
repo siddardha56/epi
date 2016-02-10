@@ -3,8 +3,6 @@ import ItemsGrid from '../ItemsGrid.jsx';
 import LeftNav from '../LeftNav.jsx';
 import { connect, dispatch } from 'react-redux';
 import { routeActions } from 'react-router-redux';
-import Loader from '../../components/Loader.jsx';
-import Tabs from '../../components/tabs/Tabs.jsx';
 import {getMovies} from '../../actions/themoviedb';
 import './page.scss';
 
@@ -56,7 +54,7 @@ class Movies extends React.Component {
              onItemClick={this.loadPage}
              selectedItem={selectedItem}/>*/}
             <LeftNav items={leftNavItems} onItemClick={this.loadPage}/>
-            {this.props.movies.getIn(['state', 'isLoading']) ? <Loader/> : ''}
+            {this.props.movies.getIn(['state', 'isLoading']) ?'loader': ''}
             <ItemsGrid items={this.props.movies.get(selectedItem)}
                        onItemClick={this.loadMovieDetail}>
             </ItemsGrid>
